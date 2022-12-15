@@ -1,0 +1,38 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define m 5
+void bfs(int adj[m][m], int visited[], int start){
+	int q[m];
+	int r = -1, f = -1, i;
+	printf("%c ->", start + 65);
+//	printf("\n");
+	visited[start] = 1;
+	q[++r] = start;
+	
+	while(r != f){
+		start = q[++f];
+		for(i=0;i<m;i++)
+		{
+			if(adj[start][i] == 1 && visited[i] == 0){
+				q[++r] = i;
+				printf("%c ->", i + 65);
+				visited[i] = 1;
+			}
+		}
+	}
+}
+
+int main(){
+	int adj[m][m];
+	int visited[m] = {0}, i, j;
+	printf("Enter the adjacency matrix: ");
+	
+	for(i=0; i<m; i++){
+		for(j=0; j<m; j++){
+			scanf("%d", &adj[i][j]);
+			printf("\n");
+		}
+	}
+	printf("BFS Traversal is: ");
+	bfs(adj, visited,0);
+}
